@@ -1,175 +1,245 @@
-# Daymark — Desktop To-Do Application
+# ✦ Daymark
 
-**Daymark** is a personal, local-first desktop task manager designed for everyday focus and clarity. Inspired by the editorial polish of Things 3 and Linear, Daymark provides an offline-first productivity tool with instant interactions, keyboard-driven navigation, and zero cloud dependencies.
+### A quieter way to get things done.
 
----
+A modern, local-first desktop task manager built for everyday focus. Organize your day, manage projects, and track your progress through a clean interface designed to stay out of your way.
 
-## Features
+**Offline-first · SQLite-powered · Privacy-focused**
 
-- **Local-First & Offline**: All tasks, projects, and settings reside in a local SQLite database on your machine. No accounts, telemetry, or server dependencies.
-- **Fast Task Management**:
-  - Quick-add tasks with `Ctrl+N` or inline inputs.
-  - Inline title editing with Enter to confirm, Escape to cancel.
-  - Rich task details with optional multi-line descriptions, due dates, and project assignments.
-  - Immediate visual feedback on task completion and reopening.
-- **Contextual Views**:
-  - **Today**: Incomplete tasks due today as well as overdue tasks that remain visible until completed or rescheduled.
-  - **Upcoming**: Incomplete future tasks grouped chronologically by date headings.
-  - **Inbox**: Incomplete tasks without a due date.
-  - **Completed**: Log of finished tasks with one-click reopening.
-  - **Projects**: Dedicated project views with custom color indicators.
-- **Safe Project Organization**:
-  - Create, rename, archive, and delete projects.
-  - Foreign key enforcement (`ON DELETE SET NULL`) ensures tasks are never deleted when a project is removed or archived.
-- **Instant Search (`Ctrl+K`)**:
-  - Local search querying titles and descriptions across all active and completed tasks.
-- **Adaptive Theming**:
-  - **Light** (soft neutral palette), **Dark** (layered graphite surfaces), and **System** (dynamically reacts to OS appearance changes).
-  - Choice persisted in SQLite.
-- **Keyboard-Driven Workflow**:
-  - `Ctrl/Cmd + N`: Create new task.
-  - `Ctrl/Cmd + K`: Open local search.
-  - `Enter`: Confirm valid task creation or inline edit.
-  - `Escape`: Close modals or cancel active editing.
-  - `Space`: Toggle completion when a task item is focused (safely disabled inside text inputs).
+<p align="center">
+
+  <img src="https://img.shields.io/badge/Tauri-2-24C8DB?style=flat-square&logo=tauri&logoColor=white" alt="Tauri 2" />
+  <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-Strict-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Rust-Powered-DEA584?style=flat-square&logo=rust&logoColor=black" alt="Rust" />
+  <img src="https://img.shields.io/badge/SQLite-Local%20Storage-003B57?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite" />
+
+</p>
 
 ---
 
-## Technology Stack
+## ✨ Features
 
-- **Desktop Framework**: [Tauri 2](https://v2.tauri.app/) (Rust native backend)
-- **Frontend**: [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/) (strict mode)
-- **Bundler & Dev Server**: [Vite 8](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with CSS design tokens
-- **Icons**: [Lucide React](https://lucide.dev/)
-- **Persistence**: SQLite via official `@tauri-apps/plugin-sql` and `tauri-plugin-sql`
-- **Testing**: [Vitest](https://vitest.dev/) with Happy-DOM
+### 📝 Effortless task management
+
+- **Quick capture** — create tasks without unnecessary steps.
+- **Inline editing** — update task titles directly in the list.
+- **Task details** — add descriptions, due dates, and project assignments.
+- **Completion tracking** — complete and reopen tasks instantly.
+- **Safe deletion** — remove tasks with clear, intentional interactions.
+
+### 🗓️ Your day, organized
+
+- **Today** — see tasks due today and overdue tasks that remain unfinished.
+- **Upcoming** — organize future tasks chronologically.
+- **Inbox** — keep undated tasks in one place.
+- **Completed** — revisit finished tasks and reopen them when needed.
+- **Projects** — organize tasks with project names and color indicators.
+
+### 🎨 A workspace that feels right
+
+- **Light theme** — a soft, neutral color palette.
+- **Dark theme** — layered graphite surfaces and subtle accents.
+- **System theme** — automatically follow the operating system's appearance.
+- **Persistent preferences** — remember your selected theme between sessions.
+
+### ⚡ Keyboard-first workflow
+
+| Shortcut       | Action                                   |
+| -------------- | ---------------------------------------- |
+| `Ctrl/Cmd + N` | Create a task                            |
+| `Ctrl/Cmd + K` | Search tasks                             |
+| `Enter`        | Confirm creation or inline editing       |
+| `Escape`       | Close dialogs or cancel editing          |
+| `Space`        | Toggle completion when a task is focused |
+
+### 🔒 Local-first by design
+
+- Tasks, projects, and settings are stored in a local SQLite database.
+- Core functionality works offline.
+- No accounts or cloud services are required.
+- No analytics or telemetry.
+- Database migrations maintain schema consistency.
+- Removing a project does not delete its associated tasks.
 
 ---
 
-## Architecture & Code Structure
+## 🛠️ Tech Stack
+
+| Technology                                    | Purpose                              |
+| --------------------------------------------- | ------------------------------------ |
+| [Tauri 2](https://v2.tauri.app/)              | Desktop application framework        |
+| [React 19](https://react.dev/)                | User interface                       |
+| [TypeScript](https://www.typescriptlang.org/) | Type-safe application logic          |
+| [Vite](https://vite.dev/)                     | Development server and build tooling |
+| [Tailwind CSS](https://tailwindcss.com/)      | Styling and design system            |
+| [Rust](https://www.rust-lang.org/)            | Native desktop integration           |
+| [SQLite](https://www.sqlite.org/)             | Local data persistence               |
+| [Vitest](https://vitest.dev/)                 | Automated testing                    |
+| [Lucide](https://lucide.dev/)                 | Interface icons                      |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+Install the following tools before running the application:
+
+- [Node.js](https://nodejs.org/) and npm.
+- [Rust](https://www.rust-lang.org/tools/install) and Cargo.
+- [Tauri prerequisites](https://v2.tauri.app/start/prerequisites/) for your operating system.
+
+On Windows, this includes the required Microsoft C++ Build Tools and WebView2 runtime.
+
+### Installation
+
+Clone the repository and enter the project directory:
+
+```bash
+git clone <repository-url>
+cd daymark
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+### Development
+
+Launch the desktop application:
+
+```bash
+npm run tauri dev
+```
+
+Run only the frontend development server:
+
+```bash
+npm run dev
+```
+
+### Testing and Quality
+
+Run the test suite:
+
+```bash
+npm test
+```
+
+Run tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+Check TypeScript:
+
+```bash
+npx tsc --noEmit
+```
+
+### Production Build
+
+Build the frontend:
+
+```bash
+npm run build
+```
+
+Build the desktop application:
+
+```bash
+npm run tauri build
+```
+
+The resulting installer and application bundles are generated according to the configured Tauri build targets.
+
+---
+
+## 🗄️ Data & Persistence
+
+Daymark uses SQLite to persist tasks, projects, and application preferences.
+
+The database is stored in the operating system's application data directory rather than inside the installation directory.
+
+| Platform | Typical location                                              |
+| -------- | ------------------------------------------------------------- |
+| Windows  | `%APPDATA%\com.yerdna.daymark\daymark.db`                     |
+| macOS    | `~/Library/Application Support/com.yerdna.daymark/daymark.db` |
+| Linux    | `~/.config/com.yerdna.daymark/daymark.db`                     |
+
+The exact location depends on the configured Tauri application identifier and database initialization.
+
+### Data integrity
+
+- Database migrations initialize and evolve the schema.
+- Foreign-key enforcement protects relational integrity.
+- Deleting a project unlinks its tasks rather than deleting them.
+- Automated tests use an isolated in-memory database to protect real user data.
+
+**Note:** Back up the application database before manually modifying or migrating it.
+
+---
+
+## 🧱 Architecture
+
+Daymark separates its user interface, application logic, persistence layer, and native desktop integration.
 
 ```text
 daymark/
 ├── src/
 │   ├── components/
-│   │   ├── layout/          # Sidebar, Header
-│   │   ├── projects/        # ProjectModal
-│   │   ├── tasks/           # TaskList, TaskItem, TaskQuickAdd, TaskDetailModal
-│   │   └── ui/              # Button, Input, Modal, SearchModal
+│   │   ├── layout/
+│   │   ├── projects/
+│   │   ├── tasks/
+│   │   └── ui/
 │   ├── database/
-│   │   ├── db.ts            # Centralized DB loader & Tauri plugin wrapper
-│   │   ├── migrations.ts    # Schema migrations & runner
-│   │   ├── inMemoryDb.ts    # In-memory SQLite simulator for tests & web preview
-│   │   └── types.ts         # Database abstraction interfaces
 │   ├── hooks/
-│   │   ├── useTheme.ts      # Theme state, OS sync, SQLite persistence
-│   │   ├── useTasks.ts      # Tasks state, view filtering, CRUD mutations
-│   │   ├── useProjects.ts   # Projects state, active/archived separation
-│   │   └── useKeyboardShortcuts.ts # Global keyboard shortcuts
 │   ├── services/
-│   │   ├── tasks.ts         # Task validation, parameterized SQL queries, search
-│   │   ├── projects.ts      # Project CRUD, archiving, safe deletion
-│   │   └── settings.ts      # Theme preference persistence in SQLite
-│   ├── types/               # TypeScript interfaces & types
+│   ├── types/
 │   ├── utils/
-│   │   └── date.ts          # Calendar date logic (YYYY-MM-DD) preventing timezone shifts
-│   ├── App.tsx              # Application shell & root coordinator
-│   ├── main.tsx             # Entry point
-│   └── index.css            # Design tokens & theme definitions
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
 ├── src-tauri/
-│   ├── capabilities/        # Tauri 2 permission capabilities (`sql:default`, etc.)
-│   ├── src/                 # Rust main & lib registering plugins
-│   ├── Cargo.toml           # Tauri 2 & tauri-plugin-sql dependencies
-│   └── tauri.conf.json      # Window settings (1000x700 viewport)
+│   ├── capabilities/
+│   ├── src/
+│   ├── Cargo.toml
+│   └── tauri.conf.json
 ├── tests/
-│   ├── date.test.ts         # Unit tests for date calculations & formatting
-│   ├── validation.test.ts   # Unit tests for input validations
-│   ├── filtering.test.ts    # Unit tests for view categorization
-│   └── services.test.ts     # Integration tests for tasks, projects, migrations, search
 ├── package.json
-├── tailwind.config.js
 └── vite.config.ts
 ```
 
----
+### Design principles
 
-## Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18+) and `npm`
-- [Rust](https://www.rust-lang.org/) (cargo toolchain)
-- Platform dependencies for Tauri 2 (Visual Studio C++ Build Tools and WebView2 on Windows)
-
----
-
-## Installation & Setup
-
-1. Clone or open the repository:
-   ```bash
-   cd daymark
-   ```
-
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+- **Simplicity** — keep the architecture proportional to the application's needs.
+- **Separation of concerns** — distinguish presentation, application logic, and persistence.
+- **Type safety** — use TypeScript to make data contracts explicit.
+- **Data ownership** — keep persistent application data under local control.
+- **Testability** — validate core business rules and database operations independently.
 
 ---
 
-## Available Commands
+## 🗺️ Current Limitations
 
-### Development
-
-- **Run Desktop App (Tauri + Vite Dev)**:
-  ```bash
-  npm run tauri dev
-  ```
-- **Run Frontend Dev Server**:
-  ```bash
-  npm run dev
-  ```
-
-### Testing
-
-- **Run Automated Test Suite (Vitest)**:
-  ```bash
-  npm test
-  ```
-- **Run Tests in Watch Mode**:
-  ```bash
-  npm run test:watch
-  ```
-
-### Build & Typecheck
-
-- **TypeScript Typecheck**:
-  ```bash
-  npx tsc --noEmit
-  ```
-- **Frontend Production Build**:
-  ```bash
-  npm run build
-  ```
-- **Tauri Desktop Release Build**:
-  ```bash
-  npm run tauri build
-  ```
+- Natural-language date parsing is not included.
+- The application is designed primarily for individual desktop use.
+- Cloud synchronization and multi-device collaboration are outside the current scope.
 
 ---
 
-## Database Location & Persistence Behavior
+## 📌 Project Status
 
-- **Database file**: `daymark.db`
-- **Location**: In Tauri desktop runtime, the database is stored in the operating system's standard application data folder:
-  - **Windows**: `%APPDATA%\com.yerdna.daymark\daymark.db`
-  - **macOS**: `~/Library/Application Support/com.yerdna.daymark/daymark.db`
-  - **Linux**: `~/.config/com.yerdna.daymark/daymark.db`
-- **Integrity**: SQLite migrations execute on startup. Foreign key enforcement (`PRAGMA foreign_keys = ON;`) ensures data consistency. Deleting a project safely unlinks tasks (`ON DELETE SET NULL`) rather than deleting them.
-- **Testing Isolation**: Automated tests execute using an isolated in-memory database instance, guaranteeing test runs never overwrite or modify user data.
+Daymark is a personal desktop productivity project focused on a minimal, polished, offline-first experience.
+
+The initial goal is to deliver reliable task management, project organization, adaptive theming, and local persistence before considering additional features.
 
 ---
 
-## Current Limitations
+## 📄 License
 
-- Natural language date parsing (e.g. "meeting next Friday at 3pm") is reserved for future releases; tasks currently support direct date pickers and presets (Today, Tomorrow).
-- Single-window desktop experience tailored for personal use.
+This project is licensed under the MIT License.
